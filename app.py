@@ -8,13 +8,13 @@ import os
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-# Check if the OpenAI API key is available
+# Validate the OpenAI API key
 if not openai_api_key:
     st.error("API Key not found. Please set OPENAI_API_KEY in the .env file.")
 else:
     openai.api_key = openai_api_key
 
-# Function to fetch GPT-4 response
+# Function to get GPT-4 response
 def get_openai_response(query):
     try:
         response = openai.ChatCompletion.create(
@@ -28,19 +28,19 @@ def get_openai_response(query):
         )
         return response['choices'][0]['message']['content']
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"Error fetching GPT-4 response: {str(e)}"
 
 # Function to fetch search results
 def get_search_results(query, num_results=5):
     try:
         return [link for link in search(query, num_results=num_results)]
     except Exception as e:
-        return [f"Error: {str(e)}"]
+        return [f"Error fetching search results: {str(e)}"]
 
 # Streamlit App UI
 st.title("AI-Powered Search Engine")
 
-# Input field for the query
+# Input field for user query
 user_query = st.text_input("Enter your query:")
 
 if user_query:
@@ -50,12 +50,12 @@ if user_query:
     st.subheader("AI-Generated Response")
     st.write(ai_response)
 
-    # Get related sources
+    # Fetch web links for sources
     with st.spinner("Fetching sources..."):
         sources = get_search_results(user_query)
-    
+
     st.subheader("Sources")
-    for i, link in enumerate(sources, start=1):
+    for i, link in enumerate(sources, 1):
         st.markdown(f"[Source {i}]({link})")
 
 st.write("Powered by OpenAI GPT-4 and Google Search")
