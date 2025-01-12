@@ -1,4 +1,4 @@
-streamlit==1.25.0  # Adjust to the latest version
-openai==0.28.0     # Adjust to the latest version
+streamlit==1.25.0
+openai==0.28.0
 googlesearch-python==1.1.0
 python-dotenv==1.0.0
