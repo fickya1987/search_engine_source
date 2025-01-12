@@ -1,0 +1,3 @@
+streamlit==1.25.0  # Adjust to the latest version
+openai==0.28.0     # Adjust to the latest version
+googlesearch-python==1.1.0
