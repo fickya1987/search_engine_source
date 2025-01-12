@@ -18,7 +18,7 @@ else:
 def get_openai_response(query):
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-4o",
             temperature=1.0,
             max_tokens=2048,
             messages=[
