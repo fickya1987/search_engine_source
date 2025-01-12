@@ -1,9 +1,12 @@
 import streamlit as st
 import openai
 from googlesearch import search  # For web search results
+from dotenv import load_dotenv
+import os
 
-# Set OpenAI API key
-openai.api_key = "your_openai_api_key"
+# Load environment variables from .env file
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Function to fetch GPT-4 response
 def get_openai_response(query):
@@ -52,3 +55,4 @@ if user_query:
         st.markdown(f"[Source {i}]({link})")
 
 st.write("Powered by OpenAI GPT-4 and Google Search")
+
