@@ -8,7 +8,7 @@ import os
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-# Ensure the API key is available
+# Check if the OpenAI API key is available
 if not openai_api_key:
     st.error("API Key not found. Please set OPENAI_API_KEY in the .env file.")
 else:
@@ -18,11 +18,11 @@ else:
 def get_openai_response(query):
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4o",
+            model="gpt-4",
             temperature=1.0,
             max_tokens=2048,
             messages=[
-                {"role": "system", "content": "You are an assistant providing concise answers with links to sources."},
+                {"role": "system", "content": "You are a helpful assistant providing concise answers."},
                 {"role": "user", "content": query},
             ]
         )
@@ -38,7 +38,7 @@ def get_search_results(query, num_results=5):
         return [f"Error: {str(e)}"]
 
 # Streamlit App UI
-st.title("AI-Powered Search Engine with Sources")
+st.title("AI-Powered Search Engine")
 
 # Input field for the query
 user_query = st.text_input("Enter your query:")
